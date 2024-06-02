@@ -1,6 +1,6 @@
 # Ruby Marketplace
 
-![Ruby Marketplace](https://via.placeholder.com/800x300.png?text=Ruby+Marketplace)
+![Ruby Marketplace](https://upload.wikimedia.org/wikipedia/commons/thumb/6/62/Ruby_On_Rails_Logo.svg/1200px-Ruby_On_Rails_Logo.svg.png)
 
 Uma aplicação de marketplace construída com Ruby on Rails.
 
@@ -80,3 +80,5 @@ Os testes são essenciais para garantir a qualidade e funcionalidade do código.
 
 ```sh
 bundle exec rspec
+
+## Projeto baseado nas lives da SkillDevs https://www.youtube.com/@skilldevs
