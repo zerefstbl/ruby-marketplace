@@ -80,5 +80,5 @@ Os testes são essenciais para garantir a qualidade e funcionalidade do código.
 
 ```sh
 bundle exec rspec
-
+```
 ## Projeto baseado nas lives da SkillDevs https://www.youtube.com/@skilldevs
