@@ -1,3 +1,4 @@
+# rubocop:disable Metrics/BlockLength
 require 'rails_helper'
 
 RSpec.describe Api::V1::UsersController, type: :controller do
@@ -52,4 +53,41 @@ RSpec.describe Api::V1::UsersController, type: :controller do
       end
     end
   end
+
+  describe 'PATCH/PUT #update' do
+    context 'when is succesfully updated' do
+      before(:each) do
+        @user = FactoryBot.create :user
+        patch :update, params: { user: { email: 'newemail@gmai.com' }, id: @user.id }, format: :json
+      end
+
+      it 'renders the json representation for the updated user' do
+        @user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(@user_response[:email]).to eq 'newemail@gmai.com'
+      end
+
+      it { should respond_with 201 }
+    end
+
+    context "when isn't update" do
+      before(:each) do
+        @user = FactoryBot.create :user
+        patch :update, params: { id: @user.id, user: { email: 'invalidemail.com' } }, format: :json
+      end
+
+      it 'renders an error json' do
+        @user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(@user_response).to have_key :errors
+      end
+
+      it 'renders the json errors because we received invalid email' do
+        @user_response = JSON.parse(response.body, symbolize_names: true)
+        expect(@user_response[:errors][:email]).to include 'is invalid'
+      end
+
+      it { should respond_with 422 }
+    end
+  end
 end
+
+# rubocop:enable Metrics/BlockLength
