@@ -1,5 +1,10 @@
 module Api::V1
     class UsersController < ApplicationController
+
+        def index
+            render json: User.all, status: :ok
+        end
+
         def show
             render json: User.find(params[:id])
         end
@@ -30,7 +35,7 @@ module Api::V1
         private
 
         def user_params
-            params.require(:user).permit(:email, :password, :password_confirmation)
+            params.permit(:email, :password, :password_confirmation)
         end
     end
 end
